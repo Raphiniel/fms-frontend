@@ -150,7 +150,7 @@ const Layout = () => {
                 transform: 'scale(1.05)',
               }
             }}>
-              The Bus-ness System
+            Dromos
             </Box>
           </Typography>
           
