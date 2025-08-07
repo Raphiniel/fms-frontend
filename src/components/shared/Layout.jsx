@@ -10,27 +10,27 @@ import {
   Dashboard, DirectionsBus, Receipt, Build, Inventory, Logout, 
   Money, People, Sell, Person2, Person2Outlined, Menu 
 } from '@mui/icons-material';
-import { deepPurple } from '@mui/material/colors';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
-  background: 'linear-gradient(45deg, #3a0ca3 0%, #7209b7 100%)',
+  background: 'rgba(0, 0, 0, 0.8)',
+  backdropFilter: 'blur(10px)',
   boxShadow: 'none',
-  borderBottom: `1px solid ${theme.palette.divider}`,
+  borderBottom: `1px solid #ffeb3b`,
   transition: 'all 0.3s ease',
   '&:hover': {
-    boxShadow: theme.shadows[4],
+    boxShadow: '0 4px 20px rgba(255, 235, 59, 0.3)',
   },
 }));
 
 const StyledDrawer = styled(Drawer)(({ theme }) => ({
   '& .MuiDrawer-paper': {
-    background: theme.palette.background.default,
-    borderRight: 'none',
-    boxShadow: theme.shadows[3],
+    background: 'rgba(0, 0, 0, 0.7)',
+    backdropFilter: 'blur(10px)',
+    borderRight: '1px solid #ffeb3b',
     width: 240,
     transition: 'all 0.3s ease',
     '&:hover': {
-      boxShadow: theme.shadows[6],
+      boxShadow: '0 0 20px rgba(255, 235, 59, 0.3)',
     },
   },
 }));
@@ -41,8 +41,9 @@ const StyledNavItem = styled(ListItem)(({ theme }) => ({
   width: 'auto',
   position: 'relative',
   transition: 'all 0.2s ease',
+  color: 'white',
   '&:hover': {
-    backgroundColor: theme.palette.action.hover,
+    backgroundColor: 'rgba(255, 235, 59, 0.1)',
     transform: 'translateX(4px)',
     '&::after': {
       content: '""',
@@ -51,18 +52,18 @@ const StyledNavItem = styled(ListItem)(({ theme }) => ({
       left: 0,
       width: '100%',
       height: 2,
-      background: theme.palette.primary.main,
+      background: '#ffeb3b',
     },
   },
   '&.active': {
-    backgroundColor: `${theme.palette.primary.main}15`,
-    borderLeft: `4px solid ${theme.palette.primary.main}`,
+    backgroundColor: 'rgba(255, 235, 59, 0.2)',
+    borderLeft: `4px solid #ffeb3b`,
     '& .MuiListItemIcon-root': {
-      color: theme.palette.primary.main,
+      color: '#ffeb3b',
     },
     '& .MuiTypography-root': {
       fontWeight: 'bold',
-      color: theme.palette.primary.main,
+      color: '#ffeb3b',
     },
     '&::before': {
       content: '""',
@@ -71,7 +72,7 @@ const StyledNavItem = styled(ListItem)(({ theme }) => ({
       left: 0,
       width: '100%',
       height: 2,
-      background: theme.palette.primary.main,
+      background: '#ffeb3b',
     },
   },
 }));
@@ -105,7 +106,22 @@ const Layout = () => {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh' }}>
+      {/* Slideshow background */}
+      <Box sx={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: -1,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        animation: 'slideshow 40s infinite',
+        opacity: 1,
+        transition: 'opacity 5s ease-in-out',
+      }} />
+      
       <CssBaseline />
       <StyledAppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
@@ -115,8 +131,9 @@ const Layout = () => {
               onClick={handleDrawerToggle}
               sx={{ 
                 mr: 2,
+                color: '#ffeb3b',
                 '&:hover': {
-                  backgroundColor: 'rgba(255,255,255,0.2)',
+                  backgroundColor: 'rgba(255, 235, 59, 0.2)',
                   transform: 'scale(1.1)',
                 }
               }}
@@ -126,50 +143,50 @@ const Layout = () => {
           )}
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 700 }}>
             <Box component="span" sx={{ 
-              background: 'linear-gradient(45deg, #f72585 0%, #4cc9f0 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
+              color: '#ffeb3b',
               display: 'inline-block',
               transition: 'all 0.3s ease',
               '&:hover': {
                 transform: 'scale(1.05)',
               }
             }}>
-              Bus365
+              The Bus-ness System
             </Box>
           </Typography>
           
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
             <Avatar sx={{ 
-              bgcolor: deepPurple[500], 
+              bgcolor: '#ffeb3b', 
+              color: 'black',
               width: 36, 
               height: 36,
               fontSize: '1rem',
               transition: 'all 0.3s ease',
               '&:hover': {
                 transform: 'scale(1.1)',
-                boxShadow: theme.shadows[4],
+                boxShadow: '0 0 10px rgba(255, 235, 59, 0.5)',
               }
             }}>
               {user?.name?.charAt(0).toUpperCase()}
             </Avatar>
             <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-              <Typography variant="subtitle2" sx={{ lineHeight: 1 }}>
+              <Typography variant="subtitle2" sx={{ lineHeight: 1, color: '#ffeb3b' }}>
                 {user?.name}
               </Typography>
-              <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.7)' }}>
+              <Typography variant="caption" sx={{ color: 'rgba(255, 235, 59, 0.7)' }}>
                 {user?.role}
               </Typography>
             </Box>
             <Button 
               color="inherit" 
               onClick={logout} 
-              startIcon={<Logout />}
+              startIcon={<Logout sx={{ color: '#ffeb3b' }} />}
               sx={{ 
                 ml: 2,
+                color: '#ffeb3b',
                 transition: 'all 0.3s ease',
                 '&:hover': {
-                  backgroundColor: 'rgba(255,255,255,0.2)',
+                  backgroundColor: 'rgba(255, 235, 59, 0.2)',
                   transform: 'translateY(-2px)',
                 }
               }}
@@ -203,11 +220,11 @@ const Layout = () => {
           }}>
             <Box sx={{ p: 2, textAlign: 'center' }}>
               <Typography variant="overline" sx={{ 
-                color: theme.palette.text.secondary,
+                color: '#ffeb3b',
                 letterSpacing: 1.5,
                 transition: 'all 0.3s ease',
                 '&:hover': {
-                  color: theme.palette.primary.main,
+                  color: 'white',
                 }
               }}>
                 Navigation
@@ -215,9 +232,10 @@ const Layout = () => {
             </Box>
             <Divider sx={{ 
               my: 1,
+              borderColor: 'rgba(255, 235, 59, 0.3)',
               transition: 'all 0.3s ease',
               '&:hover': {
-                borderColor: theme.palette.primary.main,
+                borderColor: '#ffeb3b',
               }
             }} />
             <Box sx={{ overflow: 'auto', flexGrow: 1 }}>
@@ -233,6 +251,7 @@ const Layout = () => {
                   >
                     <ListItemIcon sx={{ 
                       minWidth: 40,
+                      color: 'white',
                       transition: 'all 0.3s ease',
                     }}>
                       {item.icon}
@@ -251,10 +270,10 @@ const Layout = () => {
             </Box>
             <Box sx={{ p: 2, textAlign: 'center' }}>
               <Typography variant="caption" sx={{ 
-                color: theme.palette.text.disabled,
+                color: 'rgba(255, 235, 59, 0.7)',
                 transition: 'all 0.3s ease',
                 '&:hover': {
-                  color: theme.palette.primary.main,
+                  color: '#ffeb3b',
                 }
               }}>
                 Bus365 v1.0.0
@@ -269,9 +288,8 @@ const Layout = () => {
         sx={{ 
           flexGrow: 1, 
           p: 3,
-          background: theme.palette.mode === 'light' 
-            ? '#f5f7fa' 
-            : theme.palette.background.default,
+          background: 'rgba(0, 0, 0, 0.6)',
+          backdropFilter: 'blur(5px)',
           minHeight: '100vh',
           transition: 'all 0.3s ease',
         }}
@@ -280,16 +298,65 @@ const Layout = () => {
         <Box sx={{ 
           borderRadius: 2,
           p: 3,
-          background: theme.palette.background.paper,
-          boxShadow: theme.shadows[1],
+          background: 'rgba(0, 0, 0, 0.7)',
+          backdropFilter: 'blur(5px)',
+          border: '1px solid #ffeb3b',
+          boxShadow: '0 4px 20px rgba(255, 235, 59, 0.1)',
           transition: 'all 0.3s ease',
           '&:hover': {
-            boxShadow: theme.shadows[4],
+            boxShadow: '0 4px 30px rgba(255, 235, 59, 0.2)',
           }
         }}>
           <Outlet />
         </Box>
       </Box>
+
+      {/* Add the slideshow animation to the global styles */}
+      <style>{`
+        @keyframes slideshow {
+          0% {
+            background-image: url('image/bus1.jpg');
+            opacity: 1;
+            transition: 3s;
+          }
+          20% {
+            opacity: 1;
+            transition: 3s;
+          }
+          25% {
+            background-image: url('image/bus2.jpg');
+            opacity: 1;
+            transition: 3s;
+          }
+          45% {
+            opacity: 1;
+            transition: 3s;
+          }
+          50% {
+            background-image: url('image/bus3.jpg');
+            opacity: 1;
+            transition: 3s;
+          }
+          70% {
+            opacity: 1;
+            transition: 3s;
+          }
+          75% {
+            background-image: url('image/bus4.jpg');
+            opacity: 1;
+            transition: 3s;
+          }
+          95% {
+            opacity: 1;
+            transition: 3s;
+          }
+          100% {
+            background-image: url('image/bus1.jpg');
+            opacity: 1;
+            transition: 3s;
+          }
+        }
+      `}</style>
     </Box>
   );
 };

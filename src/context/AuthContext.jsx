@@ -13,10 +13,22 @@ const MOCK_USERS = [
     name: 'System Admin'
   },
   {
+    email: 'hr@fms.com',
+    password: 'hr123',
+    role: 'hr',
+    name: 'HR'
+  },
+  {
     email: 'manager@fms.com',
     password: 'manager123',
     role: 'fleet_manager',
     name: 'Fleet Manager'
+  },
+    {
+    email: 'inspector@fms.com',
+    password: 'inspector123',
+    role: 'inspector',
+    name: 'Bus Inspector'
   },
   {
     email: 'conductor@fms.com',
