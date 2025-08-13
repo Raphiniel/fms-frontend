@@ -91,7 +91,7 @@ const Layout = () => {
     { text: 'Maintenance', icon: <Build />, path: '/maintenance', roles: ['admin', 'fleet_manager', 'owner', 'workshop'] },
     { text: 'Stores/Parts', icon: <Inventory />, path: '/parts', roles: ['admin', 'fleet_manager', 'owner', 'workshop'] },
     { text: 'Accounting', icon: <Money />, path: '/accounting', roles: ['admin', 'accountant', 'owner'] },
-    { text: 'HR', icon: <People/>, path: '/hr', roles: ['admin', 'owner'] },
+    { text: 'HR', icon: <People/>, path: '/hr-management', roles: ['admin', 'owner'] },
     { text: 'Drivers', icon: <Person2 />, path: '/drivers', roles: ['admin', 'fleet_manager', 'owner'] },
     { text: 'Inspectors', icon: <Person2Outlined />, path: '/inspectors', roles: ['admin', 'fleet_manager', 'owner'] },
     { text: 'Conductors', icon: <Sell />, path: '/conductors', roles: ['admin', 'fleet_manager', 'owner'] },
@@ -276,7 +276,7 @@ const Layout = () => {
                   color: '#ffeb3b',
                 }
               }}>
-                Bus365 v1.0.0
+                Dromos 
               </Typography>
             </Box>
           </Box>
