@@ -94,6 +94,7 @@ const Layout = () => {
     { text: 'HR', icon: <People/>, path: '/hr-management', roles: ['admin', 'owner'] },
     { text: 'Drivers', icon: <Person2 />, path: '/drivers', roles: ['admin', 'fleet_manager', 'owner'] },
     { text: 'Inspectors', icon: <Person2Outlined />, path: '/inspectors', roles: ['admin', 'fleet_manager', 'owner'] },
+    { text: 'Maps', icon: <Person2Outlined />, path: '/livemap', roles: ['admin', 'fleet_manager', 'owner'] },
     { text: 'Conductors', icon: <Sell />, path: '/conductors', roles: ['admin', 'fleet_manager', 'owner'] },
   ];
 

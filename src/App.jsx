@@ -14,7 +14,10 @@ import InspectorsManagement from './pages/InspectorsManagement';
 import ConductorsManagement from './pages/ConductorsManagement';
 import Layout from './components/shared/Layout';
 import Unauthorized from './pages/Unauthorized';
+import LiveMap from './pages/LiveMap';
 import './App.css';
+// src/main.jsx or src/App.jsx
+import 'leaflet/dist/leaflet.css';
 
 function App() {
   return (
@@ -66,7 +69,10 @@ function App() {
                 <Route element={<ProtectedRoute allowedRoles={['admin', 'hr']} />}>
                   <Route path="/inspectors" element={<InspectorsManagement />} />
                 </Route>
-                
+                 {/* Inspectors Management */}
+                <Route element={<ProtectedRoute allowedRoles={['admin', 'hr']} />}>
+                  <Route path="/livemap" element={<LiveMap />} />
+                </Route>
                 {/* Conductors Management */}
                 <Route element={<ProtectedRoute allowedRoles={['admin', 'hr']} />}>
                   <Route path="/conductors" element={<ConductorsManagement />} />

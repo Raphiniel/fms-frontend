@@ -13,7 +13,8 @@ import {
   Link,
   Avatar,
   InputAdornment,
-  IconButton
+  IconButton,
+  CircularProgress // Added for loading indicator
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Visibility from '@mui/icons-material/Visibility';
@@ -24,15 +25,59 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // Added for loading state
   const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
+    setIsLoading(true);
+
     try {
-      await login(email, password);
+      // Step 1: Await the login from your AuthContext.
+      // We assume `login` returns user data (including a token) upon success.
+      const userData = await login(email, password);
+
+      // Step 2: If login is successful, get the device location.
+      if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+
+            // Step 3: Send coordinates to your backend.
+            // This is a "fire-and-forget" request. We don't wait for it to complete
+            // to ensure the user gets redirected quickly.
+            fetch('/api/user/update-location', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                // This assumes your userData object contains the auth token.
+                'Authorization': `Bearer ${userData.token}` 
+              },
+              body: JSON.stringify({ latitude, longitude }),
+            }).catch(err => {
+              // Log any errors, but don't block the user.
+              console.error("Failed to send location data to backend:", err);
+            });
+            
+            // Step 4: Navigate to the dashboard immediately after getting coordinates.
+            navigate('/dashboard');
+          },
+          (error) => {
+            console.error("Error getting location: ", error.message);
+            // IMPORTANT: Still navigate the user even if they deny location access.
+            navigate('/dashboard');
+          }
+        );
+      } else {
+        console.log("Geolocation is not available in this browser.");
+        // Navigate even if geolocation isn't supported.
+        navigate('/dashboard');
+      }
     } catch (err) {
       setError('Invalid credentials. Please try again.');
+      setIsLoading(false); // Stop loading only on login failure.
     }
   };
 
@@ -94,23 +139,16 @@ const Login = () => {
               autoFocus
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              disabled={isLoading} // Disable form while loading
               sx={{
                 '& .MuiOutlinedInput-root': {
-                  '& fieldset': {
-                    borderColor: 'black',
-                  },
-                  '&:hover fieldset': {
-                    borderColor: 'black',
-                  },
-                  '&.Mui-focused fieldset': {
-                    borderColor: 'black',
-                  },
+                  '& fieldset': { borderColor: 'black' },
+                  '&:hover fieldset': { borderColor: 'black' },
+                  '&.Mui-focused fieldset': { borderColor: 'black' },
                 },
                 '& .MuiInputLabel-root': {
                   color: 'black',
-                  '&.Mui-focused': {
-                    color: 'black',
-                  },
+                  '&.Mui-focused': { color: 'black' },
                 },
               }}
             />
@@ -125,6 +163,7 @@ const Login = () => {
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              disabled={isLoading} // Disable form while loading
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
@@ -141,21 +180,13 @@ const Login = () => {
               }}
               sx={{
                 '& .MuiOutlinedInput-root': {
-                  '& fieldset': {
-                    borderColor: 'black',
-                  },
-                  '&:hover fieldset': {
-                    borderColor: 'black',
-                  },
-                  '&.Mui-focused fieldset': {
-                    borderColor: 'black',
-                  },
+                  '& fieldset': { borderColor: 'black' },
+                  '&:hover fieldset': { borderColor: 'black' },
+                  '&.Mui-focused fieldset': { borderColor: 'black' },
                 },
                 '& .MuiInputLabel-root': {
                   color: 'black',
-                  '&.Mui-focused': {
-                    color: 'black',
-                  },
+                  '&.Mui-focused': { color: 'black' },
                 },
               }}
             />
@@ -163,6 +194,7 @@ const Login = () => {
               type="submit"
               fullWidth
               variant="contained"
+              disabled={isLoading} // Disable button while loading
               sx={{
                 mt: 3,
                 mb: 2,
@@ -172,21 +204,19 @@ const Login = () => {
                 fontWeight: 'bold',
                 '&:hover': {
                   backgroundColor: '#333',
+                },
+                '&.Mui-disabled': { // Style for disabled state
+                  backgroundColor: 'grey',
                 }
               }}
             >
-              Sign In
+              {isLoading ? <CircularProgress size={24} sx={{ color: '#ffeb3b' }} /> : 'Sign In'}
             </Button>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2" sx={{ color: 'black' }}>
                   Forgot password?
                 </Link>
-              </Grid>
-              <Grid item>
-                {/* <Link href="#" variant="body2" sx={{ color: 'black' }}>
-                  {"Don't have an account? Sign Up"}
-                </Link> */}
               </Grid>
             </Grid>
           </Box>
