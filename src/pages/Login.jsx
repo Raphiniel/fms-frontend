@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import { useState } from 'react';
 // import { useAuth } from '../context/AuthContext';
 // import { useNavigate } from 'react-router-dom';
@@ -227,6 +228,8 @@
 // };
 
 // export default Login;
+=======
+>>>>>>> ac2cca77905088bccfc73a995ba4e02bf20df319
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -243,20 +246,31 @@ import {
   Avatar,
   InputAdornment,
   IconButton,
+<<<<<<< HEAD
   CircularProgress
+=======
+  CircularProgress // Added for loading indicator
+>>>>>>> ac2cca77905088bccfc73a995ba4e02bf20df319
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+<<<<<<< HEAD
 // Import the new service
 import { updateUserLocation } from '../services/locationService';
+=======
+>>>>>>> ac2cca77905088bccfc73a995ba4e02bf20df319
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+<<<<<<< HEAD
   const [isLoading, setIsLoading] = useState(false);
+=======
+  const [isLoading, setIsLoading] = useState(false); // Added for loading state
+>>>>>>> ac2cca77905088bccfc73a995ba4e02bf20df319
   const { login } = useAuth();
   const navigate = useNavigate();
 
@@ -266,33 +280,73 @@ const Login = () => {
     setIsLoading(true);
 
     try {
+<<<<<<< HEAD
       // We assume `login` returns some user data on success, though we don't use it here
       await login(email, password);
 
+=======
+      // Step 1: Await the login from your AuthContext.
+      // We assume `login` returns user data (including a token) upon success.
+      const userData = await login(email, password);
+
+      // Step 2: If login is successful, get the device location.
+>>>>>>> ac2cca77905088bccfc73a995ba4e02bf20df319
       if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
             const { latitude, longitude } = position.coords;
 
+<<<<<<< HEAD
             // Use our local storage service to save the location
             updateUserLocation({ email: email }, { latitude, longitude });
 
             // Navigate to the dashboard
+=======
+            // Step 3: Send coordinates to your backend.
+            // This is a "fire-and-forget" request. We don't wait for it to complete
+            // to ensure the user gets redirected quickly.
+            fetch('/api/user/update-location', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                // This assumes your userData object contains the auth token.
+                'Authorization': `Bearer ${userData.token}` 
+              },
+              body: JSON.stringify({ latitude, longitude }),
+            }).catch(err => {
+              // Log any errors, but don't block the user.
+              console.error("Failed to send location data to backend:", err);
+            });
+            
+            // Step 4: Navigate to the dashboard immediately after getting coordinates.
+>>>>>>> ac2cca77905088bccfc73a995ba4e02bf20df319
             navigate('/dashboard');
           },
           (error) => {
             console.error("Error getting location: ", error.message);
+<<<<<<< HEAD
             // Still navigate even if location is denied.
+=======
+            // IMPORTANT: Still navigate the user even if they deny location access.
+>>>>>>> ac2cca77905088bccfc73a995ba4e02bf20df319
             navigate('/dashboard');
           }
         );
       } else {
         console.log("Geolocation is not available in this browser.");
+<<<<<<< HEAD
+=======
+        // Navigate even if geolocation isn't supported.
+>>>>>>> ac2cca77905088bccfc73a995ba4e02bf20df319
         navigate('/dashboard');
       }
     } catch (err) {
       setError('Invalid credentials. Please try again.');
+<<<<<<< HEAD
       setIsLoading(false);
+=======
+      setIsLoading(false); // Stop loading only on login failure.
+>>>>>>> ac2cca77905088bccfc73a995ba4e02bf20df319
     }
   };
 
@@ -354,7 +408,11 @@ const Login = () => {
               autoFocus
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+<<<<<<< HEAD
               disabled={isLoading}
+=======
+              disabled={isLoading} // Disable form while loading
+>>>>>>> ac2cca77905088bccfc73a995ba4e02bf20df319
               sx={{
                 '& .MuiOutlinedInput-root': {
                   '& fieldset': { borderColor: 'black' },
@@ -378,7 +436,11 @@ const Login = () => {
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+<<<<<<< HEAD
               disabled={isLoading}
+=======
+              disabled={isLoading} // Disable form while loading
+>>>>>>> ac2cca77905088bccfc73a995ba4e02bf20df319
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
@@ -409,7 +471,11 @@ const Login = () => {
               type="submit"
               fullWidth
               variant="contained"
+<<<<<<< HEAD
               disabled={isLoading}
+=======
+              disabled={isLoading} // Disable button while loading
+>>>>>>> ac2cca77905088bccfc73a995ba4e02bf20df319
               sx={{
                 mt: 3,
                 mb: 2,
@@ -420,7 +486,11 @@ const Login = () => {
                 '&:hover': {
                   backgroundColor: '#333',
                 },
+<<<<<<< HEAD
                 '&.Mui-disabled': {
+=======
+                '&.Mui-disabled': { // Style for disabled state
+>>>>>>> ac2cca77905088bccfc73a995ba4e02bf20df319
                   backgroundColor: 'grey',
                 }
               }}

@@ -166,6 +166,7 @@ button {
 
 button:hover {
   background-color: #ffc107;
+<<<<<<< HEAD
 }
 
 /* =========================================== */
@@ -648,4 +649,6 @@ form input:focus, form select:focus, form textarea:focus {
 .login-container h2 {
   margin-bottom: 1.5rem;
   color: #ffeb3b;
+=======
+>>>>>>> ac2cca77905088bccfc73a995ba4e02bf20df319
 }
