@@ -1,0 +1,651 @@
+/* App.css */
+.app-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Slideshow background */
+.slideshow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+  animation: slideshow 40s infinite;
+  opacity: 1;
+  transition: opacity 5s ease-in-out;
+}
+
+@keyframes slideshow {
+  0% {
+    background-image: url('image/bus1.jpg');
+    opacity: 1;
+    transition: 3s;
+  }
+  20% {
+    opacity: 1;
+    transition: 3s;
+  }
+  25% {
+    background-image: url('image/bus2.jpg');
+    opacity: 1;
+    transition: 3s;
+  }
+  45% {
+    opacity: 1;
+    transition: 3s;
+  }
+  50% {
+    background-image: url('image/bus3.jpg');
+    opacity: 1;
+    transition: 3s;
+  }
+  70% {
+    opacity: 1;
+    transition: 3s;
+  }
+  75% {
+    background-image: url('image/bus4.jpg');
+    opacity: 1;
+    transition: 3s;
+  }
+  95% {
+    opacity: 1;
+    transition: 3s;
+  }
+  100% {
+    background-image: url('image/bus1.jpg');
+    opacity: 1;
+    transition: 3s;
+  }
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  background-color: transparent;
+  position: relative;
+  z-index: 1;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #ffeb3baa); /* Changed to yellow */
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #ffeb3baa); /* Changed to yellow */
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+  background: url('image/bus3.jpg');
+  /* background-color: rgba(0, 0, 0, 0.7); */
+  color: white;
+  border-radius: 8px;
+  border: 1px solid #ffeb3b; /* Added yellow border */
+}
+/* The above card has been altered */
+
+.read-the-docs {
+  color: #ffeb3b; /* Changed to yellow */
+}
+
+/* Global styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  background-color: black;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ffeb3b;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ffc107;
+}
+
+/* Links */
+a {
+  color: #ffeb3b;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ffc107;
+  text-decoration: underline;
+}
+
+/* Buttons */
+button {
+  background-color: #ffeb3b;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #ffc107;
+}
+
+/* =========================================== */
+/* RESPONSIVE MEDIA QUERIES */
+/* =========================================== */
+
+/* Extra Small Devices (Phones, 360px and up) - J7 Prime portrait */
+@media (min-width: 360px) {
+  #root {
+    padding: 1rem;
+    width: 95%;
+  }
+  
+  .logo {
+    height: 4em;
+    padding: 1em;
+  }
+  
+  .card {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+  
+  /* Navigation adjustments */
+  .navigation {
+    flex-direction: column;
+    padding: 0.5rem;
+  }
+  
+  .nav-links {
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  
+  /* Dashboard adjustments */
+  .plants-list {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .plant-card {
+    padding: 0.8rem;
+  }
+  
+  .summary-stats {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .stat {
+    width: 100%;
+    padding: 0.5rem;
+  }
+  
+  /* Table adjustments */
+  table {
+    font-size: 0.7rem;
+  }
+  
+  table th, table td {
+    padding: 0.3rem;
+  }
+  
+  /* Form adjustments */
+  form input, form select, form textarea {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  button {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Small Devices (Phones, 576px and up) */
+@media (min-width: 576px) {
+  #root {
+    padding: 1.5rem;
+  }
+  
+  .logo {
+    height: 5em;
+  }
+  
+  .card {
+    padding: 1.5rem;
+  }
+  
+  .navigation {
+    flex-direction: row;
+  }
+  
+  .nav-links {
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 0;
+  }
+  
+  .plants-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .summary-stats {
+    flex-direction: row;
+  }
+  
+  .stat {
+    width: 50%;
+  }
+  
+  table {
+    font-size: 0.8rem;
+  }
+  
+  table th, table td {
+    padding: 0.5rem;
+  }
+}
+
+/* Medium Devices (Tablets, 768px and up) */
+@media (min-width: 768px) {
+  #root {
+    padding: 2rem;
+  }
+  
+  .plants-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  table {
+    font-size: 0.9rem;
+  }
+  
+  .chart-container {
+    height: 300px;
+  }
+}
+
+/* Large Devices (Desktops, 992px and up) */
+@media (min-width: 992px) {
+  .plants-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .summary-stats {
+    justify-content: space-between;
+  }
+  
+  .stat {
+    width: 23%;
+  }
+  
+  .chart-container {
+    height: 350px;
+  }
+}
+
+/* Extra Large Devices (Large Desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  #root {
+    max-width: 1400px;
+  }
+  
+  .plants-list {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .plant-card {
+    padding: 1.5rem;
+  }
+  
+  .chart-container {
+    height: 400px;
+  }
+}
+
+/* Ultra Large Devices (1920px and up) */
+@media (min-width: 1920px) {
+  #root {
+    max-width: 1800px;
+    padding: 3rem;
+  }
+  
+  body {
+    font-size: 1.1rem;
+  }
+  
+  .plants-list {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  
+  .chart-container {
+    height: 450px;
+  }
+}
+
+/* Special adjustments for very tall devices (height over 1000px) */
+@media (min-height: 1000px) {
+  .app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #root {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+/* High-resolution displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .logo {
+    filter: drop-shadow(0 0 5px rgba(255, 235, 59, 0.5));
+  }
+}
+
+/* Print styles */
+@media print {
+  .slideshow, .navigation, button {
+    display: none !important;
+  }
+  
+  body {
+    color: black;
+    background: white;
+  }
+  
+  .card {
+    background: white;
+    color: black;
+    border: 1px solid #ccc;
+  }
+  
+  a {
+    color: black;
+    text-decoration: underline;
+  }
+}
+
+/* Orientation-based adjustments */
+@media (orientation: landscape) and (max-height: 500px) {
+  #root {
+    padding: 1rem;
+  }
+  
+  .navigation {
+    padding: 0.5rem;
+  }
+  
+  .card {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  /* Already dark themed, but can add additional adjustments */
+  .card {
+    border-color: #ffc107;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .slideshow {
+    animation: none;
+    background-image: url('image/bus3.jpg');
+  }
+  
+  .logo {
+    animation: none;
+  }
+  
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Touch device adjustments */
+@media (hover: none) and (pointer: coarse) {
+  button, .nav-link {
+    min-height: 44px; /* Minimum touch target size */
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .plant-card {
+    cursor: pointer;
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+/* Custom breakpoint for charts */
+@media (max-width: 650px) {
+  .chart-container {
+    height: 250px;
+  }
+  
+  /* Simplify chart legends on small screens */
+  .chart-legend {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+
+/* added new css below */
+/* Add these to your component CSS files or App.css */
+
+/* Navigation component */
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-bottom: 2px solid #ffeb3b;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.nav-link {
+  color: #ffeb3b;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 235, 59, 0.2);
+}
+
+/* Dashboard component */
+.dashboard {
+  padding: 1rem;
+}
+
+.plants-list {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.plant-card {
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid #ffeb3b;
+  border-radius: 8px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.plant-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(255, 235, 59, 0.3);
+}
+
+.plant-card.selected {
+  background-color: rgba(255, 235, 59, 0.2);
+  border-width: 2px;
+}
+
+.plant-summary {
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid #ffeb3b;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
+.summary-stats {
+  display: flex;
+  justify-content: space-around;
+  margin: 1.5rem 0;
+}
+
+.stat {
+  text-align: center;
+  padding: 1rem;
+  background-color: rgba(255, 235, 59, 0.1);
+  border-radius: 8px;
+  width: 23%;
+}
+
+.chart-container {
+  height: 300px;
+  margin: 1.5rem 0;
+}
+
+.recent-data {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+table th, table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 235, 59, 0.3);
+}
+
+table th {
+  background-color: rgba(255, 235, 59, 0.1);
+  font-weight: bold;
+}
+
+/* Forms */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+form label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+form input, form select, form textarea {
+  padding: 0.75rem;
+  border: 1px solid #ffeb3b;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+}
+
+form input:focus, form select:focus, form textarea:focus {
+  outline: none;
+  border-color: #ffc107;
+  box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.3);
+}
+
+.error {
+  color: #f44336;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.login-container {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 2px solid #ffeb3b;
+  border-radius: 8px;
+}
+
+.login-container h2 {
+  margin-bottom: 1.5rem;
+  color: #ffeb3b;
+}
